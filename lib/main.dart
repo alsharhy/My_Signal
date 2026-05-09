@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/views/homePage.dart';
+import 'package:mysignal/screens/home_page.dart';
+import 'package:mysignal/state/providers/app_provider.dart';
+import 'package:provider/provider.dart';
+ 
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+   MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (_) => AppProvider()),
+  ],
+  child:const  MyApp(),
+)
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +21,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+    
       debugShowCheckedModeBanner: false,
-      home: const Homepage(),
+      home: HomePage(),
     );
   }
 }

@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:mysignal/state/providers/app_provider.dart';
+import 'package:mysignal/widgets/common/category_card.dart';
+import 'package:mysignal/core/config/app_constant.dart';
+
+class CategoryPage extends StatelessWidget {
+  const CategoryPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AppProvider>(
+      builder: (context, provider, child) {
+        final categories = provider.categories;
+        return Container(
+          color: const Color(AppConstant.scaffoldBackgroundColorValue),
+          child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: GridView.builder(
+              itemCount: categories.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+                childAspectRatio: 0.9,
+              ),
+              itemBuilder: (context, index) {
+                final category = categories[index];
+
+                return GestureDetector(
+                  onTap: () {
+                    provider.onCategoryTap(context, category);
+                  },
+                  child: CategoryCard(element: category),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
