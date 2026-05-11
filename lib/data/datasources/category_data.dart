@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/models/categoris.dart';
-import 'package:mysignal/models/sub_categoris.dart';
+ import 'package:mysignal/models/category.dart';
+import 'package:mysignal/models/signal.dart';
 
 final List<Category> mainCategories = [
-const Category(
+ const  Category(
     id: 1,
     title: "أفعال",
     numberOf: 50,
-    icon: Icons.directions_run,
-    color: Color(0xFFA7D8FF),
-    subCategories: [
-      SubCategory(id: 101, titleSubCatecory: "أفعل", isFavorite: false ),
-      SubCategory(id: 102, titleSubCatecory: "يفعل", isFavorite: false),
-      SubCategory(id: 103, titleSubCatecory: "نفعل", isFavorite: false),
-      SubCategory(id: 104, titleSubCatecory: "تفعل", isFavorite: false),
-      SubCategory(id: 105, titleSubCatecory: "يفعلون", isFavorite: false),
-      SubCategory(id: 106, titleSubCatecory: "يفعلن", isFavorite: false),
-      SubCategory(id: 107, titleSubCatecory: "أفعلن", isFavorite: false),
-    ],
+    icon: Icons.category,
+    color: const Color(0xFFB0E0E6),
+    signals: [
+      Signal(id :1, title: "أكل", urlImage: "images/logoApp.png",  ),
+      Signal(id: 2, title: "شرب", urlImage: "images/logoApp.png", ),
+      Signal(id: 3, title: "نوم", urlImage: "images/logoApp.png", ),
+      Signal(id: 4, title: "لعب", urlImage: "images/logoApp.png",),
+      Signal(id: 5, title: "قراءة", urlImage: "images/logoApp.png",),
+      Signal(id: 6, title: "كتابة", urlImage: "images/logoApp.png", ),
+      Signal(id: 7, title: "مشاهدة", urlImage: "images/logoApp.png",),
+     ]
   ),
+  
  const  Category(
     id: 2,
     title: "طعام",
     numberOf: 45,
     icon: Icons.fastfood,
     color: const Color(0xFFFFE8A3),
-    subCategories: [
-      SubCategory(id: 201, titleSubCatecory: "فواكه", isFavorite: false),
-      SubCategory(id: 202, titleSubCatecory: "خضروات", isFavorite: false),
-      SubCategory(id: 203, titleSubCatecory: "لحوم", isFavorite: false),
-      SubCategory(id: 204, titleSubCatecory: "أسماك", isFavorite: false),
-      SubCategory(id: 205, titleSubCatecory: "حلويات", isFavorite: false),
-      SubCategory(id: 206, titleSubCatecory: "مشروبات", isFavorite: false),
-      SubCategory(id: 207, titleSubCatecory: "مقبلات", isFavorite: false),
+    signals: [
+      Signal(id: 201, title: "فواكه", urlImage: "images/logoApp.png",  ),
+      Signal(id: 202, title: "خضروات", urlImage: "images/logoApp.png",  ),
+      Signal(id: 203, title: "لحوم", urlImage: "images/logoApp.png",  ),
+      Signal(id: 204, title: "أسماك", urlImage: "images/logoApp.png",  ),
+      Signal(id: 205, title: "حلويات", urlImage: "images/logoApp.png",  ),
+      Signal(id: 206, title: "مشروبات", urlImage: "images/logoApp.png",  ),
+      Signal(id: 207, title: "مقبلات", urlImage: "images/logoApp.png",  ),
     ],
   ),
  const Category(
@@ -41,14 +42,14 @@ const Category(
     numberOf: 30,
     icon: Icons.family_restroom,
     color: const Color(0xFFB7E4C7),
-    subCategories: [
-      SubCategory(id: 301, titleSubCatecory: "أب", isFavorite: false ),
-      SubCategory(id: 302, titleSubCatecory: "أم", isFavorite: false ),
-      SubCategory(id: 303, titleSubCatecory: "ابن" , isFavorite: false ),
-      SubCategory(id: 304, titleSubCatecory: "ابنة", isFavorite: false ),
-      SubCategory(id: 305, titleSubCatecory: "جد", isFavorite: false ),
-      SubCategory(id: 306, titleSubCatecory: "جدة", isFavorite: false ),
-      SubCategory(id: 307, titleSubCatecory: "أخ", isFavorite: false),
+    signals: [
+      Signal(id: 301, title: "أب", urlImage: "images/logoApp.png",  ),
+      Signal(id: 302, title: "أم", urlImage: "images/logoApp.png",  ),
+      Signal(id: 303, title: "ابن" , urlImage: "images/logoApp.png",  ),
+      Signal(id: 304, title: "ابنة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 305, title: "جد", urlImage: "images/logoApp.png",  ),
+      Signal(id: 306, title: "جدة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 307, title: "أخ", urlImage: "images/logoApp.png",  ),
     ],
   ),
  const Category(
@@ -57,14 +58,14 @@ const Category(
     numberOf: 25,
     icon: Icons.emoji_emotions,
     color: const Color(0xFFFFB6C1),
-    subCategories: [
-      SubCategory(id: 401, titleSubCatecory: "سعادة", isFavorite: false ),
-      SubCategory(id: 402, titleSubCatecory: "حزن", isFavorite: false ),
-      SubCategory(id: 403, titleSubCatecory: "غضب", isFavorite: false ),
-      SubCategory(id: 404, titleSubCatecory: "خوف", isFavorite: false ),
-      SubCategory(id: 405, titleSubCatecory: "حب", isFavorite: false ),
-      SubCategory(id: 406, titleSubCatecory: "كره", isFavorite: false ),
-      SubCategory(id: 407, titleSubCatecory: "دهشة", isFavorite: false ),
+    signals: [
+      Signal(id: 401, title: "سعادة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 402, title: "حزن", urlImage: "images/logoApp.png",  ),
+      Signal(id: 403, title: "غضب", urlImage: "images/logoApp.png",  ),
+      Signal(id: 404, title: "خوف", urlImage: "images/logoApp.png",  ),
+      Signal(id: 405, title: "حب", urlImage: "images/logoApp.png",  ),
+      Signal(id: 406, title: "كره", urlImage: "images/logoApp.png",  ),
+      Signal(id: 407, title: "دهشة", urlImage: "images/logoApp.png",  ),
     ],
   ),
  const Category(
@@ -73,13 +74,13 @@ const Category(
     numberOf: 20,
     icon: Icons.sports_soccer,
     color: const Color(0xFFFFB86B),
-    subCategories: [
-      SubCategory(id: 501, titleSubCatecory: "كرة قدم", isFavorite: false ),
-      SubCategory(id: 502, titleSubCatecory: "كرة سلة", isFavorite: false ),
-      SubCategory(id: 503, titleSubCatecory: "سباحة", isFavorite: false ),
-      SubCategory(id: 504, titleSubCatecory: "تنس", isFavorite: false ),
-      SubCategory(id: 505, titleSubCatecory: "جري", isFavorite: false ),
-      SubCategory(id: 506, titleSubCatecory: "ركوب دراجة", isFavorite: false ),
+    signals: [
+      Signal(id: 501, title: "كرة قدم", urlImage: "images/logoApp.png",  ),
+      Signal(id: 502, title: "كرة سلة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 503, title: "سباحة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 504, title: "تنس", urlImage: "images/logoApp.png",  ),
+      Signal(id: 505, title: "جري", urlImage: "images/logoApp.png",  ),
+      Signal(id: 506, title: "ركوب دراجة", urlImage: "images/logoApp.png",  ),
     ],
   ),
  const Category(
@@ -88,14 +89,14 @@ const Category(
     numberOf: 15,
     icon: Icons.format_list_numbered,
     color: const Color(0xFFD8B4FE),
-    subCategories: [
-      SubCategory(id: 601, titleSubCatecory: "واحد", isFavorite: false ),
-      SubCategory(id: 602, titleSubCatecory: "اثنان", isFavorite: false),
-      SubCategory(id: 603, titleSubCatecory: "ثلاثة", isFavorite: false ),
-      SubCategory(id: 604, titleSubCatecory: "أربعة", isFavorite: false),
-      SubCategory(id: 605, titleSubCatecory: "خمسة", isFavorite: false ),
-      SubCategory(id: 606, titleSubCatecory: "ستة", isFavorite: false ),
-      SubCategory(id: 607, titleSubCatecory: "سبعة", isFavorite: false),
+    signals: [
+      Signal(id: 601, title: "واحد", urlImage: "images/logoApp.png",  ),
+      Signal(id: 602, title: "اثنان", urlImage: "images/logoApp.png",  ),
+      Signal(id: 603, title: "ثلاثة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 604, title: "أربعة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 605, title: "خمسة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 606, title: "ستة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 607, title: "سبعة", urlImage: "images/logoApp.png",  ),
     ],
   ),
  const Category(
@@ -104,13 +105,13 @@ const Category(
     numberOf: 35,
     icon: Icons.pets,
     color: const Color(0xFFD7C4A5),
-    subCategories: [
-      SubCategory(id: 701, titleSubCatecory: "قطة", isFavorite: false ),
-      SubCategory(id: 702, titleSubCatecory: "كلب", isFavorite: false),
-      SubCategory(id: 703, titleSubCatecory: "طائر", isFavorite: false ),
-      SubCategory(id: 704, titleSubCatecory: "سمكة", isFavorite: false ),
-      SubCategory(id: 705, titleSubCatecory: "حصان", isFavorite: false ),
-      SubCategory(id: 706, titleSubCatecory: "بقرة", isFavorite: false ),
+    signals: [
+      Signal(id: 701, title: "قطة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 702, title: "كلب", urlImage: "images/logoApp.png",  ),
+      Signal(id: 703, title: "طائر", urlImage: "images/logoApp.png",  ),
+      Signal(id: 704, title: "سمكة", urlImage: "images/logoApp.png",  ),
+      Signal(id: 705, title: "حصان", urlImage: "images/logoApp.png",  ),
+      Signal(id: 706, title: "بقرة", urlImage: "images/logoApp.png",  ),
     ],
   ),
 ];

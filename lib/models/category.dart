@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/models/sub_categoris.dart';
+import 'package:mysignal/models/signal.dart';
 
 class Category {
   final int id;
@@ -7,7 +7,7 @@ class Category {
   final IconData icon;
   final Color color;
   final int numberOf;
-  final List<SubCategory> subCategories;
+  final List<Signal> signals;
 
   const Category({
     required this.id,
@@ -15,6 +15,7 @@ class Category {
     required this.numberOf,
     required this.icon,
     required this.color,
-    required this.subCategories,
+    required this.signals,
   });
 }
+  

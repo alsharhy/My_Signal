@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:mysignal/models/category.dart';
 import 'package:mysignal/widgets/common/sub_category_card.dart';
-import 'package:mysignal/models/categoris.dart';
-import 'package:mysignal/models/sub_categoris.dart';
+import 'package:mysignal/models/signal.dart';
+import 'package:mysignal/screens/detils_signal.dart';
 import 'package:mysignal/widgets/common/custom_app_bar.dart';
-import 'package:mysignal/widgets/common/custom_bottom_navigation.dart';
 import 'package:mysignal/widgets/common/search_field.dart';
  
-class SubCategoryScreen extends StatefulWidget {
-  const SubCategoryScreen({super.key, required this.category});
+class SignalScreen extends StatefulWidget {
+  const SignalScreen({super.key, required this.category});
   final Category category;
   @override
-  State<SubCategoryScreen> createState() => _SubCategoryScreenState();
+  State<SignalScreen> createState() => _SSignalScreenState();
 }
 
-class _SubCategoryScreenState extends State<SubCategoryScreen> {
+class _SSignalScreenState extends State<SignalScreen> {
   final TextEditingController _searchController = TextEditingController();
-  List<SubCategory> _filteredSubCategories = [];
+  List<Signal> _filteredSignals = [];
 
   @override
   void initState() {
     super.initState();
-    _filteredSubCategories = widget.category.subCategories;
-    _searchController.addListener(_filterSubCategories);
+    _filteredSignals = widget.category.signals;
+    _searchController.addListener(_filterSignals);
   }
 
   @override
   void dispose() {
-    _searchController.removeListener(_filterSubCategories);
+    _searchController.removeListener(_filterSignals);
     _searchController.dispose();
     super.dispose();
   }
 
-  void _filterSubCategories() {
+  void _filterSignals() {
     setState(() {
       final query = _searchController.text.toLowerCase();
       if (query.isEmpty) {
-        _filteredSubCategories = widget.category.subCategories;
+        _filteredSignals = widget.category.signals;
       } else {
-        _filteredSubCategories = widget.category.subCategories
-            .where((sub) => sub.titleSubCatecory.toLowerCase().contains(query))
+        _filteredSignals = widget.category.signals
+            .where((signal) => signal.title.toLowerCase().contains(query))
             .toList();
       }
     });
@@ -75,20 +75,27 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             controller: _searchController,
             hintText: 'ابحث في ${widget.category.title}...',
             onChanged: (value) {
-              _filterSubCategories();
+              _filterSignals();
             },
           ),
-          // List of SubCategories
+          // List of Signals
           Expanded(
             child: ListView.builder(
-              itemCount: _filteredSubCategories.length,
+              itemCount: _filteredSignals.length,
               itemBuilder: (context, index) {
-                final item = _filteredSubCategories[index];
+                final item = _filteredSignals[index];
                 return SubCategoryCard(
                   id: item.id,
-                  title: item.titleSubCatecory,
+                  title: item.title,
                   urlImage: item.urlImage,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailsSignalScreen(signal: item),
+                      ),
+                    );
+                  },
                 );
               },
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/models/categoris.dart';
+import 'package:mysignal/models/category.dart';
 import 'package:mysignal/data/repositories/category_repository.dart';
-import 'package:mysignal/screens/sub_category.dart';
+import 'package:mysignal/screens/signal.dart';
 
 class AppProvider extends ChangeNotifier {
   final CategoryRepository _repository = CategoryRepository();
@@ -22,7 +22,6 @@ class AppProvider extends ChangeNotifier {
 
   // Initialize categories
   void initializeCategories() {
- 
     _categories = _repository.getAllCategories();
     notifyListeners();
   }
@@ -32,7 +31,7 @@ class AppProvider extends ChangeNotifier {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SubCategoryScreen(category: category),
+        builder: (context) => SignalScreen(category: category),
       ),
     );
   }

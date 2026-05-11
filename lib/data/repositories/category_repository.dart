@@ -1,6 +1,7 @@
-import 'package:mysignal/models/categoris.dart';
+ import 'package:flutter/material.dart';
+ import 'package:mysignal/models/category.dart';
 import 'package:mysignal/data/datasources/category_data.dart';
-import 'package:mysignal/models/sub_categoris.dart';
+ import 'package:mysignal/models/signal.dart';
 class CategoryRepository {
   static final CategoryRepository _instance = CategoryRepository._internal();
   factory CategoryRepository() => _instance;
@@ -23,17 +24,17 @@ class CategoryRepository {
     
     return mainCategories.where((category) {
       return category.title.toLowerCase().contains(query.toLowerCase()) ||
-          category.subCategories.any((sub) => 
-              sub.titleSubCatecory.toLowerCase().contains(query.toLowerCase()));
+          category.signals.any((signal) => 
+              signal.title.toLowerCase().contains(query.toLowerCase()));
     }).toList();
   }
 
-  List<SubCategory> getSubCategoriesByCategoryId(int categoryId) {
+  List<Signal> getSubCategoriesByCategoryId(int categoryId) {
     final category = getCategoryById(categoryId);
-    return category?.subCategories ?? [];
+    return category?.signals ?? [];
   }
 
-  SubCategory? getSubCategoryById(int categoryId, int subCategoryId) {
+  Signal? getSubCategoryById(int categoryId, int subCategoryId) {
     final subCategories = getSubCategoriesByCategoryId(categoryId);
     try {
       return subCategories.firstWhere((sub) => sub.id == subCategoryId);

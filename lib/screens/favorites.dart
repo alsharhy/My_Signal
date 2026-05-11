@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mysignal/state/providers/app_provider.dart';
 import 'package:mysignal/data/repositories/category_repository.dart';
-import 'package:mysignal/widgets/common/custom_app_bar.dart';
-import 'package:mysignal/widgets/common/custom_bottom_navigation.dart';
 import 'package:mysignal/widgets/common/sub_category_card.dart';
-import 'package:mysignal/models/sub_categoris.dart';
-import 'package:mysignal/models/categoris.dart';
+import 'package:mysignal/models/signal.dart';
+ 
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -17,7 +15,7 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage> {
   final CategoryRepository _repository = CategoryRepository();
-  List<SubCategory> _favoriteSubCategories = [];
+  List<Signal> _favoriteSubCategories = [];
 
   @override
   void initState() {
@@ -27,10 +25,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   void _loadFavorites() {
     final favorites = context.read<AppProvider>().favorites;
-    final allSubCategories = <SubCategory>[];
+    final allSubCategories = <Signal>[];
     
     for (final category in _repository.getAllCategories()) {
-      allSubCategories.addAll(category.subCategories);
+      allSubCategories.addAll(category.signals);
     }
     
     setState(() {
@@ -45,7 +43,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return Consumer<AppProvider>(
       builder: (context, provider, child) {
         return  
-         
             _favoriteSubCategories.isEmpty
               ? Center(
                   child: Column(
@@ -85,7 +82,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     final item = _favoriteSubCategories[index];
                     return SubCategoryCard(
                       id: item.id,
-                      title: item.titleSubCatecory,
+                      title: item.title,
                
                       urlImage: item.urlImage,
                       onTap: () {

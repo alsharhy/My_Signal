@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysignal/core/config/app_constant.dart';
-import 'package:mysignal/models/categoris.dart';
+ import 'package:mysignal/models/category.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category element;
