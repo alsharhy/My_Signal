@@ -43,7 +43,7 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
     return Consumer<AppProvider>(
       builder: (context, provider, child) {
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),

@@ -3,7 +3,7 @@ import 'package:mysignal/screens/category.dart';
 import 'package:mysignal/screens/exam.dart';
 import 'package:mysignal/screens/favorites.dart';
 import 'package:mysignal/widgets/common/custom_bottom_navigation.dart';
-import 'package:provider/provider.dart';
+ import 'package:mysignal/core/config/app_constant.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(AppConstant.scaffoldBackgroundColorValue),
       appBar: AppBar(
         centerTitle: true,
         title: Container(

@@ -1,108 +1,93 @@
 import 'package:flutter/material.dart';
 import 'package:mysignal/models/category.dart';
-import 'package:mysignal/widgets/common/sub_category_card.dart';
 import 'package:mysignal/models/signal.dart';
 import 'package:mysignal/screens/detils_signal.dart';
 import 'package:mysignal/widgets/common/custom_app_bar.dart';
 import 'package:mysignal/widgets/common/search_field.dart';
- 
-class SignalScreen extends StatefulWidget {
-  const SignalScreen({super.key, required this.category});
+import 'package:mysignal/widgets/common/sub_category_card.dart';
+
+class SignalScreen extends StatelessWidget {
+  SignalScreen({super.key, required this.category});
+
   final Category category;
-  @override
-  State<SignalScreen> createState() => _SSignalScreenState();
-}
 
-class _SSignalScreenState extends State<SignalScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  List<Signal> _filteredSignals = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _filteredSignals = widget.category.signals;
-    _searchController.addListener(_filterSignals);
-  }
-
-  @override
-  void dispose() {
-    _searchController.removeListener(_filterSignals);
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _filterSignals() {
-    setState(() {
-      final query = _searchController.text.toLowerCase();
-      if (query.isEmpty) {
-        _filteredSignals = widget.category.signals;
-      } else {
-        _filteredSignals = widget.category.signals
-            .where((signal) => signal.title.toLowerCase().contains(query))
-            .toList();
-      }
-    });
-  }
+  final TextEditingController _searchController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    List<Signal> filteredSignals = category.signals;
+
     return Scaffold(
       appBar: CustomAppBar(
-        title: widget.category.title,
+        title: category.title,
         backgroundColor: Colors.white,
         titleColor: Colors.black,
         automaticallyImplyLeading: true,
         actions: [
           IconButton(
+            onPressed: () {},
             icon: Icon(
-              widget.category.icon,
+              category.icon,
+              color: category.color,
               size: 30,
-              color: widget.category.color,
             ),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('الصنف الحالي: ${widget.category.title}')),
-              );
-            },
           ),
+
           const SizedBox(width: 10),
         ],
       ),
+
       body: Column(
         children: [
-          // Search Text Field
+
+          /// البحث
           CustomSearchField(
             controller: _searchController,
-            hintText: 'ابحث في ${widget.category.title}...',
-            onChanged: (value) {
-              _filterSignals();
-            },
+            hintText: "ابحث في ${category.title}...",
+            onChanged: (value) {},
           ),
-          // List of Signals
+
+          /// القائمة
           Expanded(
             child: ListView.builder(
-              itemCount: _filteredSignals.length,
+              padding: const EdgeInsets.only(
+                top: 10,
+                bottom: 20,
+              ),
+              itemCount: filteredSignals.length,
               itemBuilder: (context, index) {
-                final item = _filteredSignals[index];
-                return SubCategoryCard(
-                  id: item.id,
-                  title: item.title,
-                  urlImage: item.urlImage,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailsSignalScreen(signal: item),
-                      ),
-                    );
-                  },
+
+                final item = filteredSignals[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 2,
+                  ),
+
+                  child: SubCategoryCard(
+                    id: item.id,
+                    title: item.title,
+                    urlImage: item.urlImageMean,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => DetailsSignalScreen(
+                            signal: item,
+                            category: category,
+                          ),
+
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),
           ),
         ],
       ),
-      
     );
   }
 }

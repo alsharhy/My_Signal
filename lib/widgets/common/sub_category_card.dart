@@ -29,7 +29,7 @@ class SubCategoryCard extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 2),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(30),
               ),
               child: InkWell(
                   onTap: onTap,
