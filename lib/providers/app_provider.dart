@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysignal/models/category.dart';
 import 'package:mysignal/data/repositories/category_repository.dart';
-import 'package:mysignal/screens/signal.dart';
 
 class AppProvider extends ChangeNotifier {
   final CategoryRepository _repository = CategoryRepository();
@@ -10,31 +9,21 @@ class AppProvider extends ChangeNotifier {
   Set<int> _favorites = {};
   int _selectedTabIndex = 0;
 
-  // Getters
+ 
   List<Category> get categories => _categories;
   Set<int> get favorites => _favorites;
   int get selectedTabIndex => _selectedTabIndex;
 
- 
   AppProvider() {
     initializeCategories();
   }
-
-  // Initialize categories
+ 
   void initializeCategories() {
     _categories = _repository.getAllCategories();
     notifyListeners();
   }
 
-  // Navigation methods
-  void onCategoryTap(BuildContext context, Category category) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SignalScreen(category: category),
-      ),
-    );
-  }
+  
 
   void changeTabIndex(int index) {
     _selectedTabIndex = index;
@@ -55,7 +44,7 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Search functionality
+  
   List<Category> searchCategories(String query) {
     return _repository.searchCategories(query);
   }

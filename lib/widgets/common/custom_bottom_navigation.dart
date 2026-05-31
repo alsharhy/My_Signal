@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mysignal/core/theme/colors.dart';
+
 class CustomBottomNavigation extends StatelessWidget {
   final int selectElemnt;
   final Function(int) onTap;
@@ -15,18 +17,18 @@ class CustomBottomNavigation extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 8,
             offset: const Offset(0, -2),
           ),
         ],
       ),
       child: BottomNavigationBar(
         currentIndex: selectElemnt,
-        onTap: onTap,  
+        onTap: onTap,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: const Color(0xFF3498DB),
+        selectedItemColor: AppColors.primary,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.bold,
@@ -39,18 +41,13 @@ class CustomBottomNavigation extends StatelessWidget {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.list),
-            label: 'التصنيفات',
+            activeIcon: Icon(Icons.home),
+            label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
             activeIcon: Icon(Icons.favorite),
             label: 'المفضلة',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.quiz_outlined),
-            activeIcon: Icon(Icons.quiz),
-            label: 'اختبار',
           ),
         ],
       ),

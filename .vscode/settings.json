@@ -1,3 +1,4 @@
 {
-  "cmake.sourceDirectory": "E:/My Signal/signal/linux"
+  "cmake.sourceDirectory": "E:/My Signal/signal/linux",
+  "chat.disableAIFeatures": false
 }

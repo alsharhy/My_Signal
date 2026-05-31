@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/screens/category.dart';
-import 'package:mysignal/screens/exam.dart';
-import 'package:mysignal/screens/favorites.dart';
+import 'package:mysignal/screens/category/category.dart';
+
+import 'package:mysignal/screens/favorites/favorites.dart';
 import 'package:mysignal/widgets/common/custom_bottom_navigation.dart';
- import 'package:mysignal/core/config/app_constant.dart';
+import 'package:mysignal/core/theme/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,19 +18,17 @@ class _HomePageState extends State<HomePage> {
   static const List<String> pagesNames = [
     "التصنيفات",
     "المفضلات",
-    "الإختبار",
   ];
 
   static const List<Widget> pages = [
     CategoryPage(),
     FavoritesPage(),
-    ExamPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(AppConstant.scaffoldBackgroundColorValue),
+      backgroundColor: AppColors.scaffoldBackground,
       appBar: AppBar(
         centerTitle: true,
         title: Container(
@@ -41,21 +39,22 @@ class _HomePageState extends State<HomePage> {
           ),
           height: 40,
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          width: double.infinity,
-          child: Text(pagesNames[currentIndex]),
+          child: Text(
+            pagesNames[currentIndex],
+            style: Theme.of(context).textTheme.titleLarge,
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
       body: pages[currentIndex],
-
-         
-    bottomNavigationBar: CustomBottomNavigation(
-  selectElemnt: currentIndex,
-  onTap: (index) {
-    setState(() {
-      currentIndex = index;
-    });
-  },
-),
+      bottomNavigationBar: CustomBottomNavigation(
+        selectElemnt: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+      ),
     );
   }
 }

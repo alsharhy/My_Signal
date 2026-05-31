@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:mysignal/providers/app_provider.dart';
 import 'package:mysignal/data/repositories/category_repository.dart';
 import 'package:mysignal/widgets/common/sub_category_card.dart';
+import 'package:mysignal/core/theme/colors.dart';
 import 'package:mysignal/models/signal.dart';
- import 'package:mysignal/screens/signal/detils_signal.dart';
+import 'package:mysignal/screens/signal/detils_signal.dart';
 import 'package:mysignal/models/category.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -50,24 +51,22 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     Icon(
                       Icons.favorite_border,
                       size: 64,
-                      color: Colors.grey[400],
+                      color: AppColors.textSecondary,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'لا توجد عناصر في المفضلة',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: AppColors.textSecondary,
+                          fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'أضف بعض العناصر إلى المفضلة',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[500],
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: AppColors.textSecondary),
                     ),
                   ],
                 ),
@@ -77,20 +76,21 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 itemCount: _favoriteSubCategories.length,
                 itemBuilder: (context, index) {
                   final item = _favoriteSubCategories[index];
+                  // Find parent category for this signal
+                  Category? parent;
+                  for (final c in _repository.getAllCategories()) {
+                    if (c.signals.any((s) => s.id == item.id)) {
+                      parent = c;
+                      break;
+                    }
+                  }
+
                   return SubCategoryCard(
                     id: item.id,
                     title: item.title,
                     urlImage: item.urlImage,
+                    subTitle: parent?.title,
                     onTap: () {
-                      // Find parent category for this signal
-                      Category? parent;
-                      for (final c in _repository.getAllCategories()) {
-                        if (c.signals.any((s) => s.id == item.id)) {
-                          parent = c;
-                          break;
-                        }
-                      }
-
                       if (parent != null) {
                         Navigator.push(
                           context,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mysignal/models/category.dart';
 import 'package:mysignal/models/signal.dart';
-import 'package:mysignal/screens/detils_signal.dart';
+import 'package:mysignal/screens/signal/detils_signal.dart';
 import 'package:mysignal/widgets/common/custom_app_bar.dart';
+import 'package:mysignal/core/theme/colors.dart';
 import 'package:mysignal/widgets/common/search_field.dart';
 import 'package:mysignal/widgets/common/sub_category_card.dart';
 
@@ -11,8 +12,7 @@ class SignalScreen extends StatelessWidget {
 
   final Category category;
 
-  final TextEditingController _searchController =
-      TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class SignalScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: category.title,
-        backgroundColor: Colors.white,
-        titleColor: Colors.black,
+        backgroundColor: AppColors.surface,
+        titleColor: AppColors.textPrimary,
         automaticallyImplyLeading: true,
         actions: [
           IconButton(
@@ -33,14 +33,11 @@ class SignalScreen extends StatelessWidget {
               size: 30,
             ),
           ),
-
           const SizedBox(width: 10),
         ],
       ),
-
       body: Column(
         children: [
-
           /// البحث
           CustomSearchField(
             controller: _searchController,
@@ -57,14 +54,12 @@ class SignalScreen extends StatelessWidget {
               ),
               itemCount: filteredSignals.length,
               itemBuilder: (context, index) {
-
                 final item = filteredSignals[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 2,
                   ),
-
                   child: SubCategoryCard(
                     id: item.id,
                     title: item.title,
@@ -77,7 +72,6 @@ class SignalScreen extends StatelessWidget {
                             signal: item,
                             category: category,
                           ),
-
                         ),
                       );
                     },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:mysignal/state/providers/app_provider.dart';
+import 'package:mysignal/providers/app_provider.dart';
+import 'package:mysignal/core/theme/colors.dart';
 
 class CustomSearchField extends StatefulWidget {
   final String? hintText;
@@ -45,11 +46,11 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.surface,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withOpacity(0.06),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -71,12 +72,12 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
             decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: TextStyle(
-                color: Colors.grey[400],
+                color: AppColors.textSecondary,
                 fontSize: 14,
               ),
               prefixIcon: Icon(
                 _isSearching ? Icons.search : Icons.search_outlined,
-                color: const Color(0xFF3498DB),
+                color: AppColors.primary,
               ),
               suffixIcon: _isSearching
                   ? IconButton(

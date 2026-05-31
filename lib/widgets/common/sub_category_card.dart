@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:mysignal/state/providers/app_provider.dart';
+import 'package:mysignal/providers/app_provider.dart';
+import 'package:mysignal/core/theme/colors.dart';
 
 class SubCategoryCard extends StatelessWidget {
   final int id;
@@ -28,7 +29,7 @@ class SubCategoryCard extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.surface,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: InkWell(
@@ -36,7 +37,7 @@ class SubCategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
                     padding: const EdgeInsets.all(16),
-                    height: 80,
+                    height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -56,8 +57,8 @@ class SubCategoryCard extends StatelessWidget {
                                 ? ClipOval(
                                     child: Image.network(
                                       urlImage!,
-                                      width: 50,
-                                      height: 50,
+                                      width: 60,
+                                      height: 60,
                                       fit: BoxFit.cover,
                                     ),
                                   )
@@ -68,15 +69,34 @@ class SubCategoryCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 16),
 
-                          // Title
+                          // Title and optional subtitle
                           Expanded(
-                            child: Text(
-                              title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  title,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                ),
+                                if (subTitle != null) ...[
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    subTitle!,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                            fontSize: 13,
+                                            color: AppColors.textSecondary),
+                                  ),
+                                ]
+                              ],
                             ),
                           ),
 
@@ -89,7 +109,9 @@ class SubCategoryCard extends StatelessWidget {
                               isFavorite
                                   ? Icons.favorite
                                   : Icons.favorite_border,
-                              color: isFavorite ? Colors.blue : Colors.grey,
+                              color: isFavorite
+                                  ? AppColors.primary
+                                  : AppColors.textSecondary,
                             ),
                           ),
                         ],

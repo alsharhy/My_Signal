@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/core/config/app_constant.dart';
-class AppTheme {
-  static final ThemeData lightTheme = ThemeData(
-    primaryColor: const Color(AppConstant.primaryColorValue),
-    scaffoldBackgroundColor: const Color(AppConstant.scaffoldBackgroundColorValue),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.blue,
-      titleTextStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
+import 'colors.dart';
+import 'fonts.dart';
 
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+class AppTheme {
+  AppTheme._();
+
+  static final ThemeData lightTheme = ThemeData(
+    useMaterial3: false,
+    primaryColor: AppColors.primary,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primary,
+      primary: AppColors.primary,
+      secondary: AppColors.secondary,
+      background: AppColors.scaffoldBackground,
+      error: AppColors.error,
+    ),
+    scaffoldBackgroundColor: AppColors.scaffoldBackground,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primary,
+      foregroundColor: Colors.white,
+      elevation: 0,
+      centerTitle: true,
+      titleTextStyle: AppFonts.textTheme.titleLarge
+          ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
-      selectedItemColor: Color(AppConstant.primaryColorValue),
+      selectedItemColor: AppColors.primary,
       unselectedItemColor: Colors.grey,
-      selectedLabelStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 12,
-      ),
-      unselectedLabelStyle: TextStyle(
-        fontWeight: FontWeight.normal,
-        fontSize: 12,
+    ),
+    textTheme: AppFonts.textTheme,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surface,
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
   );

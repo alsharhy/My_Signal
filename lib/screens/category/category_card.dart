@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mysignal/core/config/app_constant.dart';
- import 'package:mysignal/models/category.dart';
+import 'package:mysignal/models/category.dart';
+import 'package:mysignal/core/theme/colors.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category element;
@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColors.surface,
       borderRadius: BorderRadius.circular(16),
       elevation: 6,
       shadowColor: Colors.black.withOpacity(0.2),
@@ -36,11 +36,10 @@ class CategoryCard extends StatelessWidget {
 
             Text(
               element.title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
 
@@ -48,11 +47,10 @@ class CategoryCard extends StatelessWidget {
 
             Text(
               '${element.numberOf} عنصر',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey.shade600,
-                fontWeight: FontWeight.w500,
-              ),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textSecondary),
             ),
           ],
         ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:mysignal/state/providers/app_provider.dart';
-import 'package:mysignal/widgets/common/category_card.dart';
+import 'package:mysignal/providers/app_provider.dart';
+import 'package:mysignal/screens/category/category_card.dart';
+import 'package:mysignal/screens/signal/signal.dart';
 import 'package:mysignal/core/config/app_constant.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -29,7 +30,12 @@ class CategoryPage extends StatelessWidget {
 
                 return GestureDetector(
                   onTap: () {
-                    provider.onCategoryTap(context, category);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => SignalScreen(category: category),
+                      ),
+                    );
                   },
                   child: CategoryCard(element: category),
                 );

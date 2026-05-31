@@ -1,8 +1,6 @@
 class AppConstant {
-  static const String appName = 'My Signal';
-  static const String appVersion = '1.0.0';
-  static const double fontSizePrimary = 24.0;
-  static const int primaryColorValue = 0xFF2196F3;
-  static const int secondaryColorValue = 0xFF1976D2;
-  static const int scaffoldBackgroundColorValue = 0xFFFAFAFA;
+  AppConstant._();
+
+  static const int primaryColorValue = 0xFF3498DB;
+  static const int scaffoldBackgroundColorValue = 0xFFF5F7FA;
 }
