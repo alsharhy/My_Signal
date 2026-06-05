@@ -5,7 +5,7 @@ import 'colors.dart';
 class AppFonts {
   AppFonts._();
 
-  // Use Tajawal from Google Fonts for Arabic-friendly UI
+  
   static final TextTheme textTheme = GoogleFonts.tajawalTextTheme().copyWith(
     displayLarge:
         GoogleFonts.tajawal(fontSize: 34, fontWeight: FontWeight.bold),

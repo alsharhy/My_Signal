@@ -30,12 +30,7 @@ class AppTheme {
       unselectedItemColor: Colors.grey,
     ),
     textTheme: AppFonts.textTheme,
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: AppColors.surface,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-    ),
+     
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,

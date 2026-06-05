@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mysignal/models/signal.dart';
 import 'package:mysignal/providers/app_provider.dart';
 import 'package:provider/provider.dart';
-// import 'package:mysignal/core/config/app_constant.dart';
+
 import 'package:mysignal/core/theme/colors.dart';
 import 'package:mysignal/widgets/common/custom_app_bar.dart';
 import 'package:mysignal/models/category.dart';
@@ -122,10 +122,7 @@ class DetailsSignalScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
                     const Divider(height: 1),
-
-                    /// المعلومات
                     Container(
                       width: double.infinity,
                       color: AppColors.surface,
@@ -168,7 +165,6 @@ class DetailsSignalScreen extends StatelessWidget {
               ),
             ),
 
-            /// الازرار السفلية
             Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(
@@ -178,6 +174,50 @@ class DetailsSignalScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      final signals = category.signals;
+                      final id = signals.indexWhere((s) => s.id == signal.id);
+                      if (id < 0) return;
+                      final prevIdx = id - 1;
+                      if (prevIdx >= 0) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DetailsSignalScreen(
+                              signal: signals[prevIdx],
+                              category: category,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('لا يوجد عنصر سابق')),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Colors.white,
+                    ),
+                    label: const Text(
+                      "السابق",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   ElevatedButton.icon(
                     onPressed: () {
                       final signals = category.signals;
@@ -216,50 +256,6 @@ class DetailsSignalScreen extends StatelessWidget {
                     ),
                     label: const Text(
                       "التالي",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      final signals = category.signals;
-                      final idx = signals.indexWhere((s) => s.id == signal.id);
-                      if (idx < 0) return;
-                      final prevIdx = idx - 1;
-                      if (prevIdx >= 0) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => DetailsSignalScreen(
-                              signal: signals[prevIdx],
-                              category: category,
-                            ),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('لا يوجد عنصر سابق')),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 12,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.white,
-                    ),
-                    label: const Text(
-                      "السابق",
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,

@@ -50,7 +50,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   children: [
                     Icon(
                       Icons.favorite_border,
-                      size: 64,
+                      size: 60,
                       color: AppColors.textSecondary,
                     ),
                     const SizedBox(height: 16),
@@ -59,6 +59,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: AppColors.textSecondary,
                           fontWeight: FontWeight.w500),
+                          
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -76,7 +77,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 itemCount: _favoriteSubCategories.length,
                 itemBuilder: (context, index) {
                   final item = _favoriteSubCategories[index];
-                  // Find parent category for this signal
+                   
                   Category? parent;
                   for (final c in _repository.getAllCategories()) {
                     if (c.signals.any((s) => s.id == item.id)) {

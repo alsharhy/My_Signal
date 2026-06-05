@@ -25,10 +25,10 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // 🔥 الأيقونة فقط بدون أي خلفية
+           
             Icon(
               element.icon,
-              size: 90,
+              size: 80,
               color: element.color,
             ),
 

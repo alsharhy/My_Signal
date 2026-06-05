@@ -4,7 +4,7 @@ import 'package:mysignal/screens/category/category.dart';
 import 'package:mysignal/screens/favorites/favorites.dart';
 import 'package:mysignal/widgets/common/custom_bottom_navigation.dart';
 import 'package:mysignal/core/theme/colors.dart';
-
+import 'package:mysignal/widgets/common/custom_app_bar.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -29,22 +29,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldBackground,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          height: 40,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            pagesNames[currentIndex],
-            style: Theme.of(context).textTheme.titleLarge,
-            textAlign: TextAlign.center,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: pagesNames[currentIndex],
+        backgroundColor: AppColors.surface,
+        titleColor: AppColors.textPrimary,
+        automaticallyImplyLeading: false,
       ),
       body: pages[currentIndex],
       bottomNavigationBar: CustomBottomNavigation(

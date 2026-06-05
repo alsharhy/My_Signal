@@ -4,33 +4,17 @@ import 'package:mysignal/data/repositories/category_repository.dart';
 
 class AppProvider extends ChangeNotifier {
   final CategoryRepository _repository = CategoryRepository();
-
-  List<Category> _categories = [];
   Set<int> _favorites = {};
-  int _selectedTabIndex = 0;
-
- 
-  List<Category> get categories => _categories;
-  Set<int> get favorites => _favorites;
-  int get selectedTabIndex => _selectedTabIndex;
-
-  AppProvider() {
-    initializeCategories();
-  }
- 
-  void initializeCategories() {
-    _categories = _repository.getAllCategories();
-    notifyListeners();
+  List<Category> get categories {
+    return _repository.getAllCategories();
   }
 
-  
-
-  void changeTabIndex(int index) {
-    _selectedTabIndex = index;
-    notifyListeners();
+  Set<int> get favorites {
+    return _favorites;
   }
 
-  // Favorite methods
+  AppProvider();
+
   bool isFavorite(int id) {
     return _favorites.contains(id);
   }
@@ -43,9 +27,5 @@ class AppProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  
-  List<Category> searchCategories(String query) {
-    return _repository.searchCategories(query);
-  }
+ 
 }

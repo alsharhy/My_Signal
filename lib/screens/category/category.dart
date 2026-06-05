@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:mysignal/providers/app_provider.dart';
 import 'package:mysignal/screens/category/category_card.dart';
 import 'package:mysignal/screens/signal/signal.dart';
-import 'package:mysignal/core/config/app_constant.dart';
+ import 'package:mysignal/core/theme/colors.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});
@@ -14,7 +14,7 @@ class CategoryPage extends StatelessWidget {
       builder: (context, provider, child) {
         final categories = provider.categories;
         return Container(
-          color: const Color(AppConstant.scaffoldBackgroundColorValue),
+          color: AppColors.scaffoldBackground,
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: GridView.builder(
@@ -23,12 +23,12 @@ class CategoryPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
-                childAspectRatio: 0.9,
+              
               ),
               itemBuilder: (context, index) {
                 final category = categories[index];
 
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     Navigator.push(
                       context,

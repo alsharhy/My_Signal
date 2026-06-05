@@ -4,15 +4,12 @@ import 'package:mysignal/models/signal.dart';
 import 'package:mysignal/screens/signal/detils_signal.dart';
 import 'package:mysignal/widgets/common/custom_app_bar.dart';
 import 'package:mysignal/core/theme/colors.dart';
-import 'package:mysignal/widgets/common/search_field.dart';
 import 'package:mysignal/widgets/common/sub_category_card.dart';
 
 class SignalScreen extends StatelessWidget {
   SignalScreen({super.key, required this.category});
 
   final Category category;
-
-  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +35,7 @@ class SignalScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          /// البحث
-          CustomSearchField(
-            controller: _searchController,
-            hintText: "ابحث في ${category.title}...",
-            onChanged: (value) {},
-          ),
-
-          /// القائمة
+    
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.only(
