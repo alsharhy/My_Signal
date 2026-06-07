@@ -34,7 +34,7 @@ class SubCategoryCard extends StatelessWidget {
               ),
               child: InkWell(
                   onTap: onTap,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(0),
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     height: 100,
@@ -55,12 +55,27 @@ class SubCategoryCard extends StatelessWidget {
                             ),
                             child: urlImage != null
                                 ? ClipOval(
-                                    child: Image.network(
-                                      urlImage!,
-                                      width: 60,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    ),
+                                    child: urlImage!.startsWith('http')
+                                        ? Image.network(
+                                            urlImage!,
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, error, stackTrace) => const Icon(
+                                              Icons.image_not_supported,
+                                              size: 24,
+                                            ),
+                                          )
+                                        : Image.asset(
+                                            urlImage!,
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, error, stackTrace) => const Icon(
+                                              Icons.image_not_supported,
+                                              size: 24,
+                                            ),
+                                          ),
                                   )
                                 : const Icon(
                                     Icons.category,
