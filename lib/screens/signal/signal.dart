@@ -16,7 +16,8 @@ class SignalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppProvider>(
       builder: (context, provider, child) {
-        final categoryIndex = provider.categories.indexWhere((c) => c.id == categoryId);
+        final categoryIndex =
+            provider.categories.indexWhere((c) => c.id == categoryId);
         if (categoryIndex == -1) {
           return const Scaffold(
             body: Center(
